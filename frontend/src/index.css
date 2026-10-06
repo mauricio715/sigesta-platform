@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+/*
+  SI-GESTA · Sistema visual "etiqueta de lote"
+  - Neutros fríos (concreto, acero) para que la planta se lea sin fatiga.
+  - El color saturado se reserva para el estado FEFO: verde, ámbar, rojo.
+  - Barlow Condensed para códigos de lote y cifras, como una etiqueta impresa.
+*/
+@theme {
+  --font-sans: "Barlow", "Segoe UI", system-ui, sans-serif;
+  --font-cond: "Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif;
+
+  --color-tinta: #1F2A37;
+  --color-concreto: #EEF1F4;
+  --color-acero: #5B6B7C;
+  --color-linea: #CBD3DC;
+  --color-petroleo: #0E5A73;
+  --color-petroleo-oscuro: #0A4152;
+  --color-petroleo-claro: #E3EEF2;
+
+  --color-vigente: #1E8E4E;
+  --color-vigente-fondo: #E4F4EA;
+  --color-proximo: #A86F00;
+  --color-proximo-fondo: #FDF1D6;
+  --color-vencido: #C2362F;
+  --color-vencido-fondo: #FBE6E4;
+  --color-agotado: #7D8A97;
+  --color-agotado-fondo: #EEF0F2;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-concreto font-sans text-tinta antialiased;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  :focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--color-petroleo) 55%, transparent);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility cifra {
+  font-family: var(--font-cond);
+  font-variant-numeric: tabular-nums;
+}
